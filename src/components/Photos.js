@@ -56,7 +56,9 @@ export default class Photos extends Component {
                 photos: res.data.results,
                 loading: false,
                 page: 2,
-                searching: true
+                searching: true,
+                total_found: res.data.total,
+                total_found_pages: res.data.total_pages
             })
         )
         e.preventDefault();
@@ -69,8 +71,10 @@ export default class Photos extends Component {
             res => this.setState({
                 photos: res.data.results,
                 loading: false,
-                 page: this.state.page + 1,
-                searching: true
+                page: this.state.page + 1,
+                searching: true,
+                total_found: res.data.total,
+                total_found_pages: res.data.total_pages
             })
         )
 
@@ -86,13 +90,16 @@ export default class Photos extends Component {
        
         var searchHeading = '';
         var searchButtonMarkup = '';
+        var searchInfo = '';
         if(this.state.searching === true){
             searchHeading = <h2>You searched with <b>{this.state.search_query}</b></h2>
             searchButtonMarkup = <button onClick={this.loadNextSearchPage} type="button">Load More {this.state.page}</button>
+            searchInfo = <span>Total found: {this.state.total_found} | Pages {this.state.page -1} of {this.state.total_found_pages}</span>
 
         } else{
             searchHeading = <h2>Recent Photos</h2>
             searchButtonMarkup = <button onClick={this.loadNextpage} type="button">Load More {this.state.page}</button>
+            searchInfo = ''
         }
 
         if(this.state.loading === true) {
@@ -112,6 +119,7 @@ export default class Photos extends Component {
                 <div className="row top-heading">
                     <div className="col">
                         <h2>{searchHeading}</h2>
+                        {searchInfo}
                     </div>
                     <div className="col col-auto my-auto text-right">
                         <div className="search-form">
@@ -128,7 +136,7 @@ export default class Photos extends Component {
                     this.state.photos.map((photo) => (
                         <div key={photo.id} className="col-md-3 col-6">
                             <div className="single-photo">
-                                <a className="d-block" href="/">
+                                <a className="d-block" href={'single?id=' + photo.id}>
                                     <div className="image-wraper">
                                         <img src={photo.urls.small} alt={photo.description}/>
                                     </div>
