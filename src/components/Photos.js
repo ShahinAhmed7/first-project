@@ -118,7 +118,7 @@ export default class Photos extends Component {
             <React.Fragment>
                 <div className="row top-heading">
                     <div className="col">
-                        <h2>{searchHeading}</h2>
+                        {searchHeading}
                         {searchInfo}
                     </div>
                     <div className="col col-auto my-auto text-right">

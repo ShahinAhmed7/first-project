@@ -27,8 +27,21 @@ export default class Single extends Component {
     }
 
     render() {
-        console.log(this.state.photo)
         var photo = this.state.photo
+
+         if(this.state.loading === true) {
+            return(
+            <div className="row">
+                <div className="col text-center">
+                    <div className="loading">
+                        <i className="fa fa-spinner fa-pulse"></i>
+                    </div>
+                </div>
+            </div>
+            )
+        } 
+
+        
         return (
             <div>
                 <div className="photo wraper">
@@ -38,11 +51,16 @@ export default class Single extends Component {
                         
                         <ul>
                             <li><label htmlFor="uploaded_by">Uploaded by:</label> {photo.user && photo.user.first_name} {photo.user && photo.user.last_name}</li>
+
                             {photo.updated_at ? <li><label htmlFor="photo_date">Upload date:</label> {photo.updated_at}</li> : ''}
-                            <li><label htmlFor="camera_model">Camera model:</label> {photo.exif && photo.exif.model}</li>
-                            <li><label htmlFor="camera_aperture">Camera aperture:</label> {photo.exif && photo.exif.aperture}</li>
-                            <li><label htmlFor="camera_length">Focal length:</label> {photo.exif && photo.exif.focal_length}</li>
-                            <li><label htmlFor="camera_ico">Iso:</label> {photo.exif && photo.exif.iso}</li>
+
+                           {photo.exif.model ? <li><label htmlFor="camera_model">Camera model:</label> {photo.exif && photo.exif.model}</li> : ''}
+
+                           {photo.exif.aperture ? <li><label htmlFor="camera_aperture">Camera aperture:</label> {photo.exif && photo.exif.aperture}</li> : ''}
+
+                            {photo.exif.focal_length ? <li><label htmlFor="camera_length">Focal length:</label> {photo.exif && photo.exif.focal_length}</li> : ''}
+
+                           {photo.exif.iso ? <li><label htmlFor="camera_ico">Iso:</label> {photo.exif && photo.exif.iso}</li> : ''}
                         </ul>
 
                         <a target="blank_" href={photo.links && photo.links.download}>Download</a>
