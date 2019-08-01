@@ -16,11 +16,11 @@ export default class About extends Component {
                    <br/>
                        <div className="row">
                            <div className="col-md-8">
-                               <img  src={img1} alt="Image 1"/>
+                           <img src={img1} alt="Image1" />
                                <br/> <br/>
                            </div>
                            <div className="col-md-4">
-                               <img  src={img2} alt="Image 2"/>
+                           <img src={img2} alt="Image2" />
                            </div>
                        </div>
                    </div>
