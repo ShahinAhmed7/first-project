@@ -136,7 +136,7 @@ export default class Photos extends Component {
                     this.state.photos.map((photo) => (
                         <div key={photo.id} className="col-md-3 col-6">
                             <div className="single-photo">
-                                <a className="d-block" href={'single?id=' + photo.id}>
+                                <a target="blank_" className="d-block" href={'single?id=' + photo.id}>
                                     <div className="image-wraper">
                                         <img src={photo.urls.small} alt={photo.description}/>
                                     </div>
